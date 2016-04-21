@@ -1,6 +1,7 @@
 package info.xiaomo.controller;
 
 import info.xiaomo.bean.Person;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,19 +27,20 @@ import java.util.Map;
 public class HelloController {
 
     @RequestMapping("/hello")
-    public String hello() {
+    public String hello(Model model) {
+        model.addAttribute("name", "xiaomo");
         return "hello";
     }
 
     @RequestMapping("/person1")
-    public String toPerson(Person p){
-        System.out.println(p.getName()+" "+p.getAge());
+    public String toPerson(Person p) {
+        System.out.println(p.getName() + " " + p.getAge());
         return "hello";
     }
 
     @RequestMapping("/show")
-    public String showPerson(Map<String,Object> map){
-        Person p =new Person();
+    public String showPerson(Map<String, Object> map) {
+        Person p = new Person();
         map.put("p", p);
         p.setAge(20);
         p.setName("jayjay");
@@ -46,16 +48,17 @@ public class HelloController {
     }
 
     @RequestMapping("/getPerson")
-    public void getPerson(String name,PrintWriter pw){
-        pw.write("hello,"+name);
+    public void getPerson(String name, PrintWriter pw) {
+        pw.write("hello," + name);
     }
+
     @RequestMapping("/name")
-    public String sayHello(){
+    public String sayHello() {
         return "name";
     }
 
     @RequestMapping("/redirect")
-    public String redirect(){
+    public String redirect() {
         return "redirect:hello";
     }
 }
