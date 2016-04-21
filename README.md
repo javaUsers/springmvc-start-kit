@@ -1,0 +1,1 @@
+启动服务器之后访问：localhost:port/mvc/hello
